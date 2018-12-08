@@ -1,0 +1,15 @@
+{
+  "name": "node-tutorials",
+  "version": "1.0.0",
+  "description": "this package is used to give description to node enviornment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "tutorials"
+  ],
+  "author": "",
+  "license": "ISC"
+}

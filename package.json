@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
     "babel-start": "nodemon --exec babel-node index.js",
-    "babel-start-route": "nodemon --exec babel-node server.js"
+    "babel-start-route": "nodemon --exec babel-node server.js",
+    "build": "babel server.js -d dist/"
   },
   "keywords": [
     "node",

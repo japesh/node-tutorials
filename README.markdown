@@ -113,41 +113,116 @@ npm install --save <pkg>
 
 ## Defining routes
 
-1. install express, body-parser 
-    ~~~
-    npm install --save express`
-    ~~~
-    ~~~
-    npm install body-parser --save
-    ~~~
+1. install express, body-parser
+   ```
+   npm install --save express`
+   ```
+   ```
+   npm install body-parser --save
+   ```
+2. Modify index.js as follows.
+
+   ```
+   import express from "express";
+    import http from "http";
+    import usersRoutes from "./src/routes/users";
+    import bodyParser from "body-parser";
+    const app = express();
+    const PORT = process.env.PORT || 3000;
+    // function handleRequest(request, response){
+    //     response.end('Server working properly. Requested URL : ' + request.url);
+    // }
+
+    const Server = http.createServer(app);
+
+    app.use(bodyParser.json());
+    app.use('/', usersRoutes);
+
+    Server.listen(PORT, function() {
+        console.log("Server listening on: http://localhost:%s", PORT);
+    });
+
+
+   ```
+
+   express is a framework and it is used to define routes, middleware and many more functionality. body-parser is a middleware,
+   it is used to extract the entire body portion of an incoming request stream and exposes it on req.body.
+
+3. Create users.js in routes - `echo > src\controllers\users.js` `echo > src\routes\users.js`.
+4. Open src\routes\users.js and modify it as.
+   Route is the 
+
+   ```
+    import users from "../controllers/users";
+    import express from "express";
+
+    const router = express.Router();
+    router.get("/", function(req, res) {
+        res.header("Content-type", "text/html");
+        return res.end("<h1>Hello, Secure World!</h1>");
+    });
+    router.post("/create-user", (req, res) => {
+        res.header("Content-type", "application/json");
+        return res.send(users.addUsers(req.body));
+    });
+    router.post("/login", (req, res) => {
+        res.header("Content-type", "application/json");
+        return res.send(users.login(req.body));
+    });
+    router.get("/loggedin-user", (req, res) => {
+        res.header("Content-type", "application/json");
+        return res.send(users.getLoggedInUsers());
+    });
+
+    router.get("/loggedin-user/:userName", (req, res) => {
+        res.header("Content-type", "application/json");
+        return res.send(users.isLoggedIn(req.params));
+    });
+    router.get("/get-user", (req, res) => {
+        res.header("Content-type", "application/json");
+        return res.send(users.getUsers());
+    });
+
+    export default router;
+
+   ```
+
 ## configuring babel
 
 1. Install preset-env babel-cli and babel-preset-env
 
-   ```
-   npm install --global babel-cli
-   ```
+```
+npm install --global babel-cli
+```
 
-   ```
-   npm install --save-dev babel-preset-env
-   ```
+```
+npm install --save-dev babel-preset-env
+```
 
 2. Add .babelrc `echo > index.js`
    open .babelrc and modify it as follows
-   ```
-   {
-    "presets": ["env"]
-   }
-   ```
+
+```
+{
+ "presets": ["env"]
+}
+```
+
 3. add script in package.json as follows.
-   ```
-       {
-           "scripts": {
-                ...
-                "babel-start": "nodemon --exec babel-node index.js"
-            },
-       }
-   ```
+
+```
+    {
+        "scripts": {
+             ...
+             "babel-start": "nodemon --exec babel-node index.js"
+         },
+    }
+```
+
 4. run `npm run babel-start`
 
 [why-nodejs]: https://www.infoworld.com/article/3210589/node-js/what-is-nodejs-javascript-runtime-explained.html
+
+```
+
+```

@@ -30,8 +30,12 @@ class Users {
   getLoggedInUsers() {
     return this.loggedInUser;
   }
-  isLoggedIn(){
-      
+  isLoggedIn(user) {
+    const { userName } = user || {};
+    if (this.loggedInUser.indexOf(userName) !== -1) {
+      return [userName];
+    }
+    return [];
   }
   getUsers() {
     return Object.keys(this.value);

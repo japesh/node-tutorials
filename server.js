@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 const Server = http.createServer(app);
 
 app.use(bodyParser.json());
-usersRoutes(app);
+app.use('/', usersRoutes);
 
 Server.listen(PORT, function() {
   console.log("Server listening on: http://localhost:%s", PORT);

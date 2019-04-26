@@ -1,10 +1,11 @@
 import users from "../controllers/users";
 import express from "express";
+import os from "os"
 
 const router = express.Router();
 router.get("/", function(req, res) {
   res.header("Content-type", "text/html");
-  return res.end("<h1>Hello, Secure World!</h1>");
+  return res.end(`<h1>Hello, Secure World!:${os.hostname()}</h1>`);
 });
 router.post("/create-user", (req, res) => {
   res.header("Content-type", "application/json");

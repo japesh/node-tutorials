@@ -67,3 +67,25 @@ CMD [ "npm", "run", "start:prod" ]
   ```
   docker exec -it <container id> /bin/bash
   ```
+## Final file will look like this
+```
+  version: "3"
+    services:
+    web:
+        # replace username/repo:tag with your name and image details
+        image: japesh/node-tutorials:dev
+        deploy:
+        replicas: 5
+        resources:
+            limits:
+            cpus: "0.1"
+            memory: 50M
+        restart_policy:
+            condition: on-failure
+        ports:
+        - "80:3000"
+        networks:
+        - webnet
+    networks:
+    webnet:
+```

@@ -5,7 +5,10 @@ import os from "os"
 const router = express.Router();
 router.get("/", function(req, res) {
   res.header("Content-type", "text/html");
-  return res.end(`<h1>Hello, Secure World!:${os.hostname()}</h1>`);
+  return res.end(`<div>
+    <h1>Hello, Secure World!:${os.hostname()}</h1>
+    <h2>Visits</h2>${req.visits}
+  </div>`);
 });
 router.post("/create-user", (req, res) => {
   res.header("Content-type", "application/json");

@@ -8,7 +8,7 @@
     "start": "nodemon index.js",
     "babel-start": "nodemon --exec babel-node index.js",
     "babel-start-route": "nodemon --exec babel-node src/server.js",
-    "build": "babel src -d dist/",
+    "build": "./node_modules/.bin/babel src -d dist/",
     "start:prod": "node dist/server.js"
   },
   "keywords": [
@@ -19,11 +19,18 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "core-js": "^2.6.5",
     "express": "^4.16.4",
-    "http": "0.0.0"
+    "http": "0.0.0",
+    "redis": "^2.8.0",
+    "regenerator-runtime": "^0.13.2"
   },
   "devDependencies": {
-    "babel-preset-env": "^1.7.0",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
     "nodemon": "^1.18.7"
   }
 }
